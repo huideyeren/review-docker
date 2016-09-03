@@ -7,3 +7,5 @@ RUN apt-get update && \
     apt-get clean
 
 RUN gem update
+
+RUN tlmgr update --self --all
