@@ -4,7 +4,8 @@ MAINTAINER huideyeren
 
 RUN apt-get update && \
     apt-get install -y texlive-luatex \
-                       texlive-xetex && \
+                       texlive-xetex \
+                       fonts-ipafont && \
     apt-get clean
 
 RUN gem update
