@@ -8,4 +8,6 @@ RUN apt-get update && \
                        fonts-ipafont && \
     apt-get clean
 
-RUN gem update
+RUN gem update && \
+    gem install specific_install && \
+    gem specific_install -l 'git@github.com:kmuto/review.git'
