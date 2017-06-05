@@ -11,6 +11,10 @@ RUN apt-get update && \
 RUN echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
 RUN locale-gen en_US.UTF-8 && update-locale en_US.UTF-8
 
+ADD https://kmuto.jp/debian/noto/fonts-noto-cjk_1.004+repack3-1~exp1_all.deb /tmp/noto.deb
+RUN dpkg -i /tmp/noto.deb && rm /tmp/noto.deb
+ADD https://kmuto.jp/debian/noto/noto-map.tgz ./noto-map.tgz
+
 RUN apt-get install -y --no-install-recommends \
     texlive-lang-japanese \
     texlive-fonts-recommended \
@@ -24,6 +28,9 @@ RUN apt-get install -y --no-install-recommends \
     texlive-xetex \
     fonts-ipafont && \
     apt-get clean
+
+ADD noto/ /usr/share/texlive/texmf-dist/fonts/map/dvipdfmx/ptex-fontmaps/noto/
+RUN texhash && kanji-config-updmap-sys noto
 
 RUN apt-get install -y --no-install-recommends \
     ghostscript \
@@ -74,13 +81,6 @@ RUN mkdir /java && \
 RUN apt-get install -y gnupg
 RUN curl -sL https://deb.nodesource.com/setup_8.x | bash -
 RUN apt-get install -y nodejs && npm install -g yarn
-
-ADD https://kmuto.jp/debian/noto/fonts-noto-cjk_1.004+repack3-1~exp1_all.deb /tmp/noto.deb
-RUN dpkg -i /tmp/noto.deb && rm /tmp/noto.deb
-
-ADD https://kmuto.jp/debian/noto/noto-map.tgz ./noto-map.tgz
-ADD noto/ /usr/share/texlive/texmf-dist/fonts/map/dvipdfmx/ptex-fontmaps/noto/
-RUN texhash && kanji-config-updmap-sys noto
 
 RUN mkdir /docs
 WORKDIR /docs
