@@ -8,11 +8,9 @@ RUN apt-get update && \
                        fonts-ipafont \
                        build-essential
 
-RUN git clone https://github.com/kmuto/review.git
-
 RUN gem update && \
     gem install specific_install && \
-    gem specific_install -l './review'
+    gem specific_install -l 'kmuto/review'
 
 RUN apt-get remove -y build-essential && \
     apt-get clean
