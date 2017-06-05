@@ -48,6 +48,8 @@ RUN apt-get install -y --no-install-recommends \
     python-reportlab && \
     apt-get clean
 
+RUN mkdir -p /usr/share/man/man1
+
 RUN apt-get install -y --no-install-recommends \
     default-jre && \
     apt-get clean
