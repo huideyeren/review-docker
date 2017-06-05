@@ -78,8 +78,7 @@ RUN apt-get install -y nodejs && npm install -g yarn
 ADD https://kmuto.jp/debian/noto/fonts-noto-cjk_1.004+repack3-1~exp1_all.deb /tmp/noto.deb
 RUN dpkg -i /tmp/noto.deb && rm /tmp/noto.deb
 
-RUN ls
-
+ADD https://kmuto.jp/debian/noto/noto-map.tgz ./noto-map.tgz
 ADD noto/ /usr/share/texlive/texmf-dist/fonts/map/dvipdfmx/ptex-fontmaps/noto/
 RUN texhash && kanji-config-updmap-sys noto
 
