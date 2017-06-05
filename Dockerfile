@@ -4,7 +4,9 @@ MAINTAINER huideyeren
 RUN apt-get update && \
     apt-get install -y locales \
                        git-core \
-                       curl
+                       build-essential \
+                       curl && \
+    apt-get clean
 
 RUN echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
 RUN locale-gen en_US.UTF-8 && update-locale en_US.UTF-8
@@ -20,22 +22,33 @@ RUN apt-get install -y --no-install-recommends \
     texlive-pictures \
     texlive-luatex \
     texlive-xetex \
-    fonts-ipafont \
-    build-essential \
+    fonts-ipafont && \
+    apt-get clean
+
+RUN apt-get install -y --no-install-recommends \
     ghostscript \
-    gsfonts \
+    gsfonts && \
+    apt-get clean
+
+RUN apt-get install -y --no-install-recommends \
     zip \
     ruby-zip \
     ruby-nokogiri \
     mecab \
     ruby-mecab \
     mecab-ipadic-utf8 \
-    poppler-data \
+    poppler-data && \
+    apt-get clean
+
+RUN apt-get install -y --no-install-recommends \
     graphviz \
     fonts-ipafont \
     python-setuptools \
     python-imaging  \
-    python-reportlab \
+    python-reportlab && \
+    apt-get clean
+
+RUN apt-get install -y --no-install-recommends \
     default-jre \
     librsvg2-bin && \
     apt-get clean
