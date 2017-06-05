@@ -6,7 +6,7 @@ RUN apt-get update && \
     apt-get install -y texlive-luatex \
                        texlive-xetex \
                        fonts-ipafont \
-                       build-essential \ 
+                       build-essential
 
 RUN gem update && \
     gem install specific_install && \
