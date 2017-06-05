@@ -61,8 +61,8 @@ RUN apt-get install -y --no-install-recommends \
 RUN gem update && \
     gem install bundler \
         rake \
-        specific_install --no-rdoc --no-ri && \
-    gem specific_install -l 'kmuto/review'
+        review \
+        review-peg --no-rdoc --no-ri
 
 RUN easy_install pip
 RUN pip install blockdiag seqdiag actdiag nwdiag
@@ -78,6 +78,7 @@ RUN apt-get install -y nodejs && npm install -g yarn
 ADD https://kmuto.jp/debian/noto/fonts-noto-cjk_1.004+repack3-1~exp1_all.deb /tmp/noto.deb
 RUN dpkg -i /tmp/noto.deb && rm /tmp/noto.deb
 
+RUN mkdir noto
 ADD noto/ /usr/share/texlive/texmf-dist/fonts/map/dvipdfmx/ptex-fontmaps/noto/
 RUN texhash && kanji-config-updmap-sys noto
 
