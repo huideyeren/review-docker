@@ -67,7 +67,7 @@ RUN mkdir /java && \
           > /java/plantuml.jar
 
 RUN apt-get install -y gnupg
-RUN curl -sL https://deb.nodesource.com/setup_6.x | bash -
+RUN curl -sL https://deb.nodesource.com/setup_8.x | bash -
 RUN apt-get install -y nodejs && npm install -g yarn
 
 ADD https://kmuto.jp/debian/noto/fonts-noto-cjk_1.004+repack3-1~exp1_all.deb /tmp/noto.deb
