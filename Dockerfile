@@ -10,7 +10,7 @@ RUN apt-get update && \
 
 RUN gem update && \
     gem install specific_install && \
-    gem specific_install -l 'git@github.com:kmuto/review.git'
+    gem specific_install -l 'https://github.com/kmuto/review.git'
 
 RUN apt-get remove -y build-essential && \
     apt-get clean
