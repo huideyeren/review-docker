@@ -32,7 +32,7 @@ RUN apt-get install -y --no-install-recommends \
     mecab-ipadic-utf8 \
     poppler-data \
     graphviz \
-    onts-ipafont \
+    fonts-ipafont \
     python-setuptools \
     python-imaging  \
     python-reportlab \
