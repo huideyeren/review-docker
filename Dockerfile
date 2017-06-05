@@ -49,7 +49,10 @@ RUN apt-get install -y --no-install-recommends \
     apt-get clean
 
 RUN apt-get install -y --no-install-recommends \
-    default-jre \
+    default-jre && \
+    apt-get clean
+
+RUN apt-get install -y --no-install-recommends \
     librsvg2-bin && \
     apt-get clean
 
