@@ -13,7 +13,7 @@ RUN locale-gen en_US.UTF-8 && update-locale en_US.UTF-8
 
 ADD https://kmuto.jp/debian/noto/fonts-noto-cjk_1.004+repack3-1~exp1_all.deb /tmp/noto.deb
 RUN dpkg -i /tmp/noto.deb && rm /tmp/noto.deb
-ADD https://kmuto.jp/debian/noto/noto-map.tgz ./noto-map.tgz
+ADD https://kmuto.jp/debian/noto/noto-map.tgz .
 
 RUN apt-get install -y --no-install-recommends \
     texlive-lang-japanese \
