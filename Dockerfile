@@ -10,10 +10,7 @@ RUN apt-get update && \
 
 RUN echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
 RUN locale-gen en_US.UTF-8 && update-locale en_US.UTF-8
-
-ADD https://kmuto.jp/debian/noto/fonts-noto-cjk_1.004+repack3-1~exp1_all.deb /tmp/noto.deb
-RUN dpkg -i /tmp/noto.deb && rm /tmp/noto.deb
-ADD https://kmuto.jp/debian/noto/noto-map.tgz .
+ENV LANG en_US.UTF-8
 
 RUN apt-get install -y --no-install-recommends \
     texlive-lang-japanese \
@@ -29,7 +26,12 @@ RUN apt-get install -y --no-install-recommends \
     fonts-ipafont && \
     apt-get clean
 
-ADD noto/ /usr/share/texlive/texmf-dist/fonts/map/dvipdfmx/ptex-fontmaps/noto/
+ADD https://kmuto.jp/debian/noto/fonts-noto-cjk_1.004+repack3-1~exp1_all.deb /tmp/noto.deb
+RUN dpkg -i /tmp/noto.deb && rm /tmp/noto.deb
+ADD https://kmuto.jp/debian/noto/noto-map.tgz /tmp/noto-map.tgz
+
+RUN mkdir -p /etc/texmf/texmf.d && echo "TEXMFVAR=/work/.texmf-var" > /etc/texmf/texmf.d/99local.cnf
+RUN mkdir -p /usr/share/texlive/texmf-dist/fonts/map/dvipdfmx/ptex-fontmaps && tar zxvf /tmp/noto-map.tgz && rm /tmp/noto-map.tgz
 RUN texhash && kanji-config-updmap-sys noto
 
 RUN apt-get install -y --no-install-recommends \
