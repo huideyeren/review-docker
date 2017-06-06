@@ -26,13 +26,7 @@ RUN apt-get install -y --no-install-recommends \
     fonts-ipafont && \
     apt-get clean
 
-ADD https://kmuto.jp/debian/noto/fonts-noto-cjk_1.004+repack3-1~exp1_all.deb /tmp/noto.deb
-RUN dpkg -i /tmp/noto.deb && rm /tmp/noto.deb
-ADD https://kmuto.jp/debian/noto/noto-map.tgz /tmp/noto-map.tgz
-
-RUN mkdir -p /etc/texmf/texmf.d && echo "TEXMFVAR=/work/.texmf-var" > /etc/texmf/texmf.d/99local.cnf
-RUN mkdir -p /usr/share/texlive/texmf-dist/fonts/map/dvipdfmx/ptex-fontmaps && tar zxvf /tmp/noto-map.tgz && rm /tmp/noto-map.tgz
-RUN texhash && kanji-config-updmap-sys noto
+RUN texhash && kanji-config-updmap-sys ipaex
 
 RUN apt-get install -y --no-install-recommends \
     ghostscript \
