@@ -19,6 +19,8 @@ ADD https://noto-website-2.storage.googleapis.com/pkgs/NotoSerifCJKjp-hinted.zip
 
 WORKDIR /noto
 
+RUN ls
+
 RUN unzip NotoSansCJKjp-hinted.zip && \
     unzip NotoSerifCJKjp-hinted.zip && \
     mkdir -p /usr/share/fonts/noto && \
