@@ -5,6 +5,7 @@ RUN apt-get update && \
     apt-get install -y locales \
                        git-core \
                        build-essential \
+                       unzip \
                        curl && \
     apt-get clean
 
