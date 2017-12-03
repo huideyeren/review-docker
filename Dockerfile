@@ -15,6 +15,7 @@ ENV LANG en_US.UTF-8
 RUN mkdir /noto
 
 ADD https://noto-website.storage.googleapis.com/pkgs/NotoSansCJKjp-hinted.zip /noto
+ADD https://noto-website-2.storage.googleapis.com/pkgs/NotoSerifCJKjp-hinted.zip /noto
 
 WORKDIR /noto
 
@@ -22,6 +23,7 @@ WORKDIR /
 RUN rm -rf /noto
 
 RUN unzip NotoSansCJKjp-hinted.zip && \
+    unzip NotoSerifCJKjp-hinted.zip && \
     mkdir -p /usr/share/fonts/noto && \
     cp *.otf /usr/share/fonts/noto && \
     chmod 644 -R /usr/share/fonts/noto/ && \
