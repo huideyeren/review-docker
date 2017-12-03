@@ -19,15 +19,15 @@ ADD https://noto-website-2.storage.googleapis.com/pkgs/NotoSerifCJKjp-hinted.zip
 
 WORKDIR /noto
 
-WORKDIR /
-RUN rm -rf /noto
-
 RUN unzip NotoSansCJKjp-hinted.zip && \
     unzip NotoSerifCJKjp-hinted.zip && \
     mkdir -p /usr/share/fonts/noto && \
     cp *.otf /usr/share/fonts/noto && \
     chmod 644 -R /usr/share/fonts/noto/ && \
     fc-cache -fv
+
+WORKDIR /
+RUN rm -rf /noto
 
 RUN apt-get install -y --no-install-recommends \
     texlive-lang-japanese \
