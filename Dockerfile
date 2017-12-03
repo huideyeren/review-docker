@@ -12,6 +12,21 @@ RUN echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
 RUN locale-gen en_US.UTF-8 && update-locale en_US.UTF-8
 ENV LANG en_US.UTF-8
 
+RUN mkdir /noto
+
+ADD https://noto-website.storage.googleapis.com/pkgs/NotoSansCJKjp-hinted.zip /noto
+
+WORKDIR /noto
+
+WORKDIR /
+RUN rm -rf /noto
+
+RUN unzip NotoSansCJKjp-hinted.zip && \
+    mkdir -p /usr/share/fonts/noto && \
+    cp *.otf /usr/share/fonts/noto && \
+    chmod 644 -R /usr/share/fonts/noto/ && \
+    fc-cache -fv
+
 RUN apt-get install -y --no-install-recommends \
     texlive-lang-japanese \
     texlive-fonts-recommended \
