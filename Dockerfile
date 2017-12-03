@@ -48,6 +48,8 @@ RUN unzip NotoSerifCJKjp-hinted.zip && \
 WORKDIR /
 RUN rm -rf /noto
 
+WORKDIR ~
+
 RUN apt-get install -y --no-install-recommends \
     texlive-lang-japanese \
     texlive-fonts-recommended \
@@ -63,6 +65,8 @@ RUN apt-get install -y --no-install-recommends \
     apt-get clean
 
 RUN texhash && kanji-config-updmap-sys ipaex
+
+RUN luaotfload-tool --update
 
 RUN apt-get install -y --no-install-recommends \
     ghostscript \
