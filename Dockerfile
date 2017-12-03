@@ -68,6 +68,8 @@ RUN texhash && kanji-config-updmap-sys ipaex
 
 RUN luaotfload-tool --update
 
+RUN mkluatexfontdb -vvv
+
 RUN apt-get install -y --no-install-recommends \
     ghostscript \
     gsfonts && \
