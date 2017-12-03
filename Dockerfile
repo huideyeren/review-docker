@@ -22,8 +22,8 @@ WORKDIR /noto
 
 RUN ls
 
-RUN unzip NotoSansCJKjp-hinted.zip && \
-    unzip NotoSerifCJKjp-hinted.zip && \
+RUN unzip NotoSansCJKjp-hinted.zip -y && \
+    unzip NotoSerifCJKjp-hinted.zip -y && \
     mkdir -p /usr/share/fonts/noto && \
     cp *.otf /usr/share/fonts/noto && \
     chmod 644 -R /usr/share/fonts/noto/ && \
