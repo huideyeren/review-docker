@@ -6,6 +6,7 @@ RUN apt-get update && \
                        git-core \
                        build-essential \
                        unzip \
+                       fontconfig \
                        curl && \
     apt-get clean
 
