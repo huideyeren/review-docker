@@ -64,7 +64,9 @@ RUN apt-get install -y --no-install-recommends \
     fonts-ipafont && \
     apt-get clean
 
-RUN texhash && kanji-config-updmap-sys ipaex
+# RUN texhash && kanji-config-updmap-sys ipaex
+
+RUN texhash
 
 RUN luaotfload-tool --update
 
