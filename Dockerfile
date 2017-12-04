@@ -7,7 +7,7 @@ RUN apt-get update && \
                        build-essential \
                        unzip \
                        fontconfig \
-                       fonts-noto-cjk \
+                       fonts-noto-cjk-extra \
                        curl && \
     apt-get clean
 
