@@ -122,7 +122,7 @@ RUN apt-get install -y gnupg && apt-get clean && \
 
 RUN git clone https://github.com/neologd/mecab-ipadic-neologd.git && \
     cd mecab-ipadic-neologd && \
-    sudo bin/install-mecab-ipadic-neologd && \
+    bin/install-mecab-ipadic-neologd && \
     echo dicdir = /usr/lib/x86_64-linux-gnu/mecab/dic/mecab-ipadic-neologd > /etc/mecabrc
 
 RUN mkdir /docs
