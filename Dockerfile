@@ -123,10 +123,11 @@ RUN apt-get install -y gnupg && apt-get clean && \
     curl -sL https://deb.nodesource.com/setup_8.x | bash - && \
     apt-get install -y nodejs && npm install -g yarn
 
-RUN git clone https://github.com/neologd/mecab-ipadic-neologd.git && \
+RUN apt-get install -y sudo cron && apt-get clean && \
+    git clone https://github.com/neologd/mecab-ipadic-neologd.git && \
     cd mecab-ipadic-neologd && \
-    bin/install-mecab-ipadic-neologd -y && \
-    echo dicdir = /usr/lib/x86_64-linux-gnu/mecab/dic/mecab-ipadic-neologd > /etc/mecabrc
+    sudo bin/install-mecab-ipadic-neologd -y && \
+    sudo echo dicdir = /usr/lib/x86_64-linux-gnu/mecab/dic/mecab-ipadic-neologd > /etc/mecabrc
 
 RUN mkdir /docs
 WORKDIR /docs
