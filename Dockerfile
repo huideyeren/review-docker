@@ -83,6 +83,8 @@ RUN apt-get install -y --no-install-recommends \
     ruby-mecab \
     mecab-ipadic-utf8 \
     libmecab-dev \
+    file \
+    xz-utils \
     poppler-data && \
     apt-get clean
 
