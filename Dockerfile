@@ -109,16 +109,21 @@ RUN gem update && \
         review \
         review-peg --no-rdoc --no-ri
 
-RUN easy_install pip
-RUN pip install blockdiag seqdiag actdiag nwdiag
+RUN easy_install pip && \
+    pip install blockdiag seqdiag actdiag nwdiag
 
 RUN mkdir /java && \
     curl -sL https://sourceforge.net/projects/plantuml/files/plantuml.jar \
           > /java/plantuml.jar
 
-RUN apt-get install -y gnupg
-RUN curl -sL https://deb.nodesource.com/setup_8.x | bash -
-RUN apt-get install -y nodejs && npm install -g yarn
+RUN apt-get install -y gnupg && apt-get clean && \
+    curl -sL https://deb.nodesource.com/setup_8.x | bash - && \
+    apt-get install -y nodejs && npm install -g yarn
+
+RUN git clone https://github.com/neologd/mecab-ipadic-neologd.git && \
+    cd mecab-ipadic-neologd && \
+    sudo bin/install-mecab-ipadic-neologd && \
+    echo dicdir = /usr/lib/x86_64-linux-gnu/mecab/dic/mecab-ipadic-neologd > /etc/mecabrc
 
 RUN mkdir /docs
 WORKDIR /docs
