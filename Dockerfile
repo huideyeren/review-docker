@@ -103,6 +103,12 @@ RUN apt-get install -y --no-install-recommends \
     librsvg2-bin && \
     apt-get clean
 
+RUN apt-get install -y -no-install-recommends \
+    libssl-dev \
+    libreadline-dev \
+    zlib1g-dev && \
+    apt-get-clean
+
 RUN git clone https://github.com/sstephenson/rbenv.git /root/.rbenv && \
     git clone https://github.com/sstephenson/ruby-build.git /root/.rbenv/plugins/ruby-build/ && \
     /root/.rbenv/plugins/ruby-build/install.sh
