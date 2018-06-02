@@ -115,7 +115,8 @@ RUN git clone https://github.com/sstephenson/rbenv.git /root/.rbenv && \
 ENV PATH /root/.rbenv/bin:$PATH
 ENV RUBYOPT --jit
 RUN echo 'eval "$(rbenv init -)"' >> /etc/profile && \
-    rbenv install 2.6.0-preview2
+    rbenv install 2.6.0-preview2 && \
+    rbenv global 2.6.0-preview2
 
 RUN gem update && \
     gem install bundler \
