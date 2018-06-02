@@ -77,10 +77,7 @@ RUN apt-get install -y --no-install-recommends \
 
 RUN apt-get install -y --no-install-recommends \
     zip \
-    ruby-zip \
-    ruby-nokogiri \
     mecab \
-    ruby-mecab \
     mecab-ipadic-utf8 \
     libmecab-dev \
     file \
@@ -106,8 +103,19 @@ RUN apt-get install -y --no-install-recommends \
     librsvg2-bin && \
     apt-get clean
 
+RUN git clone https://github.com/sstephenson/rbenv.git /root/.rbenv \
+    git clone https://github.com/sstephenson/ruby-build.git /root/.rbenv/plugins/ruby-build \
+    ./root/.rbenv/plugins/ruby-build/install.sh \
+ENV PATH /root/.rbenv/bin:$PATH
+ENV RUBYOPT --jit
+RUN echo 'eval "$(rbenv init -)"' >> /etc/profile \
+    rbenv install 2.6.0-preview2
+
 RUN gem update && \
     gem install bundler \
+        rubyzip \
+        nokogiri \
+        natto \
         rake \
         review \
         review-peg --no-rdoc --no-ri
