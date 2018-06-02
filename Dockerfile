@@ -103,7 +103,7 @@ RUN apt-get install -y --no-install-recommends \
     librsvg2-bin && \
     apt-get clean
 
-RUN apt-get install -y -no-install-recommends \
+RUN apt-get install -y --no-install-recommends \
     libssl-dev \
     libreadline-dev \
     zlib1g-dev && \
