@@ -104,7 +104,7 @@ RUN apt-get install -y --no-install-recommends \
     apt-get clean
 
 RUN git clone https://github.com/sstephenson/rbenv.git /root/.rbenv && \
-    git clone https://github.com/sstephenson/ruby-build.git /root/.rbenv/plugins/ && \
+    git clone https://github.com/sstephenson/ruby-build.git /root/.rbenv/plugins/ruby-build/ && \
     ./root/.rbenv/plugins/ruby-build/install.sh
 ENV PATH /root/.rbenv/bin:$PATH
 ENV RUBYOPT --jit
