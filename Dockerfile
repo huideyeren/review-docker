@@ -115,7 +115,7 @@ RUN git clone https://github.com/sstephenson/rbenv.git /root/.rbenv && \
 ENV PATH /root/.rbenv/bin:$PATH
 ENV RUBYOPT --jit
 RUN echo 'eval "$(rbenv init -)"' >> /etc/profile.d/rbenv.sh && \
-    echo 'eval "$(rbenv init -)"' >> .bashrc && \
+    bash /etc/profile.d/rbenv.sh && \
     rbenv install 2.6.0-preview2 && \
     rbenv global 2.6.0-preview2
 
