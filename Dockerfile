@@ -113,7 +113,6 @@ RUN git clone https://github.com/sstephenson/rbenv.git /root/.rbenv && \
     git clone https://github.com/sstephenson/ruby-build.git /root/.rbenv/plugins/ruby-build/ && \
     /root/.rbenv/plugins/ruby-build/install.sh
 ENV PATH /root/.rbenv/bin:$PATH
-ENV RUBYOPT --jit
 RUN echo 'eval "$(rbenv init -)"' >> /etc/profile.d/rbenv.sh && \
     bash /etc/profile.d/rbenv.sh && \
     rbenv init -
@@ -121,6 +120,7 @@ RUN rbenv install 2.6.0-preview2 && \
     rbenv global 2.6.0-preview2 && \
     which ruby && \
     ruby -v
+ENV RUBYOPT --jit
 
 RUN gem update && \
     gem install bundler \
