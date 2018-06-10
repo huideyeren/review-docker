@@ -117,9 +117,11 @@ RUN echo 'eval "$(rbenv init -)"' >> /etc/profile.d/rbenv.sh && \
     bash /etc/profile.d/rbenv.sh && \
     rbenv init -
 RUN rbenv install 2.6.0-preview2 && \
-    rbenv global 2.6.0-preview2 && \
+    rbenv global 2.6.0-preview2
+RUN echo $PATH && \
     which ruby && \
     ruby -v
+    
 ENV RUBYOPT --jit
 
 RUN gem update && \
