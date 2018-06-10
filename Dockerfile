@@ -122,7 +122,7 @@ RUN echo $PATH && \
     which ruby && \
     ruby -v
     
-ENV RUBYOPT --jit --disable-install-doc
+ENV RUBYOPT --jit
 
 RUN rbenv global 2.6.0-preview2 && \
     gem update && \
