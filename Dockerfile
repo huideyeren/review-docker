@@ -118,7 +118,9 @@ RUN echo 'eval "$(rbenv init -)"' >> /etc/profile.d/rbenv.sh && \
     bash /etc/profile.d/rbenv.sh && \
     rbenv init -
 RUN rbenv install 2.6.0-preview2 && \
-    rbenv global 2.6.0-preview2
+    rbenv global 2.6.0-preview2 && \
+    which ruby && \
+    ruby -v
 
 RUN gem update && \
     gem install bundler \
