@@ -113,7 +113,7 @@ RUN git clone https://github.com/sstephenson/rbenv.git /root/.rbenv && \
     git clone https://github.com/sstephenson/ruby-build.git /root/.rbenv/plugins/ruby-build/ && \
     /root/.rbenv/plugins/ruby-build/install.sh
 ENV PATH /root/.rbenv/bin:$PATH
-RUN echo 'eval "$(rbenv init -)"' >> /etc/profile.d/rbenv.sh && \
+RUN echo 'eval "$(rbenv init -)"' >> /etc/profile && \
     bash /etc/profile.d/rbenv.sh && \
     rbenv init -
 RUN rbenv install 2.6.0-preview2 && \
@@ -122,9 +122,10 @@ RUN echo $PATH && \
     which ruby && \
     ruby -v
     
-ENV RUBYOPT --jit
+ENV RUBYOPT --jit --disable-install-doc
 
-RUN gem update && \
+RUN rbenv global 2.6.0-preview2 && \
+    gem update && \
     gem install bundler \
         rubyzip \
         nokogiri \
