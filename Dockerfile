@@ -125,7 +125,9 @@ RUN rbenv install 2.6.0-preview2 && \
     rbenv global 2.6.0-preview2
 RUN echo $PATH && \
     which ruby && \
-    ruby -v
+    ruby -v && \
+    rbenv versions
+
     
 # ENV RUBYOPT --jit
 
