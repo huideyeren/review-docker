@@ -115,7 +115,8 @@ RUN git clone https://github.com/sstephenson/rbenv.git /root/.rbenv && \
 ENV PATH /root/.rbenv/bin:$PATH
 RUN echo 'eval "$(rbenv init -)"' >> /etc/profile.d/rbenv.sh && \
     echo 'export PATH="~/.rbenv/bin:$PATH"' >> ~/.bashrc && \
-    echo 'eval "$(rbenv init -)"' >> ~/.bashrc
+    echo 'eval "$(rbenv init -)"' >> ~/.bashrc && \
+    . ~/.bashrc
 
 ENV CONFIGURE_OPTS --disable-install-doc
 RUN rbenv install 2.6.0-preview2 && \
