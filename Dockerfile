@@ -114,9 +114,8 @@ RUN git clone https://github.com/sstephenson/rbenv.git /root/.rbenv && \
     /root/.rbenv/plugins/ruby-build/install.sh
 ENV PATH /root/.rbenv/bin:$PATH
 RUN echo 'eval "$(rbenv init -)"' >> /etc/profile.d/rbenv.sh && \
-    echo 'eval "$(rbenv init -)"' >> .bashrc && \
-    chmod 755 /root/.rbenv/bin/rbenv &&\
-    . /etc/profile.d/rbenv.sh
+    echo 'export PATH="~/.rbenv/bin:$PATH"' >> ~/.bashrc && \
+    echo 'eval "$(rbenv init -)"' >> ~/.bashrc
 
 ENV CONFIGURE_OPTS --disable-install-doc
 RUN rbenv install 2.6.0-preview2 && \
