@@ -110,14 +110,13 @@ RUN apt-get install -y --no-install-recommends \
     apt-get clean
 
 RUN git clone https://github.com/sstephenson/rbenv.git /root/.rbenv && \
-    git clone https://github.com/sstephenson/ruby-build.git /root/.rbenv/plugins/ruby-build/ && \
+    git clone https://github.com/sstephenson/ruby-build.git /root/.rbenv/plugins/ruby-build && \
     /root/.rbenv/plugins/ruby-build/install.sh
 ENV PATH /root/.rbenv/bin:$PATH
-RUN echo 'eval "$(rbenv init -)"' >> /etc/profile
-RUN echo 'eval "$(rbenv init -)"' >> .bashrc
-RUN . /etc/profile
-ENV PATH /root/.rbenv/bin:$PATH
-RUN ls /root/.rbenv/bin
+RUN echo 'eval "$(rbenv init -)"' >> /etc/profile.d/rbenv.sh && \
+    echo 'eval "$(rbenv init -)"' >> .bashrc && \
+    . /etc/profile.d/rbenv.sh
+RUN which rbenv
 ENV CONFIGURE_OPTS --disable-install-doc
 RUN rbenv install 2.6.0-preview2 && \
     rbenv global 2.6.0-preview2
@@ -125,9 +124,9 @@ RUN echo $PATH && \
     which ruby && \
     ruby -v
     
-ENV RUBYOPT --jit
+# ENV RUBYOPT --jit
 
-RUN rbenv global 2.6.0-preview2 && \
+RUN echo 'gem: --no-rdoc --no-ri' >> /.gemrc && \
     gem update && \
     gem install bundler \
         rubyzip \
@@ -135,7 +134,7 @@ RUN rbenv global 2.6.0-preview2 && \
         natto \
         rake \
         review \
-        review-peg --no-rdoc --no-ri
+        review-peg
 
 RUN easy_install pip && \
     pip install blockdiag seqdiag actdiag nwdiag
