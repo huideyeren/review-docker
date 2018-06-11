@@ -117,18 +117,16 @@ RUN echo 'eval "$(rbenv init -)"' >> /etc/profile.d/rbenv.sh && \
     echo 'eval "$(rbenv init -)"' >> .bashrc && \
     chmod 755 /root/.rbenv/bin/rbenv &&\
     . /etc/profile.d/rbenv.sh
-RUN which rbenv
-RUN echo $PATH
 
 ENV CONFIGURE_OPTS --disable-install-doc
 RUN rbenv install 2.6.0-preview2 && \
     rbenv global 2.6.0-preview2
 RUN echo $PATH && \
     which ruby && \
+    which rbenv && \
     ruby -v && \
     rbenv versions
 
-    
 # ENV RUBYOPT --jit
 
 RUN echo 'gem: --no-rdoc --no-ri' >> /.gemrc && \
