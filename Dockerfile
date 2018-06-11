@@ -116,6 +116,8 @@ ENV PATH /root/.rbenv/bin:$PATH
 RUN echo 'eval "$(rbenv init -)"' >> /etc/profile
 RUN echo 'eval "$(rbenv init -)"' >> .bashrc
 RUN . /etc/profile
+ENV PATH /root/.rbenv/bin:$PATH
+RUN ls /root/.rbenv/bin
 ENV CONFIGURE_OPTS --disable-install-doc
 RUN rbenv install 2.6.0-preview2 && \
     rbenv global 2.6.0-preview2
