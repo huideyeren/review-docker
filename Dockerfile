@@ -118,9 +118,10 @@ ENV PATH /root/.rbenv/bin:$PATH
 RUN which rbenv
 RUN echoz
 RUN echo 'eval "$(rbenv init -)"' >> /etc/profile.d/rbenv.sh && \
-    echo 'export PATH="~/.rbenv/bin:$PATH"' >> ~/.bashrc && \
-    echo 'eval "$(rbenv init -)"' >> ~/.bashrc && \
-    . ~/.bashrc
+    echo 'PATH="~/.rbenv/bin:$PATH"' >> ~/.profile && \
+    echo 'export $PATH' >> ~/.profile && \
+    echo 'eval "$(rbenv init -)"' >> ~/.profile && \
+    . ~/.profile
 
 ENV CONFIGURE_OPTS --disable-install-doc
 RUN rbenv install $(rbenv install -l | grep -v - | tail -1) && \
