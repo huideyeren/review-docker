@@ -134,7 +134,7 @@ RUN echo $PATH && \
 
 # ENV RUBYOPT --jit
 
-RUN echo 'gem: --no-rdoc --no-ri' >> /.gemrc && \
+RUN echo 'gem: --no-rdoc --no-ri --prerelease' >> /.gemrc && \
     gem update && \
     gem install bundler \
         rubyzip \
