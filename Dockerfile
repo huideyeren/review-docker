@@ -145,7 +145,7 @@ RUN echo 'gem: --no-rdoc --no-ri' >> /.gemrc && \
         review-peg
 
 RUN easy_install pip && \
-    pip install blockdiag seqdiag actdiag nwdiag
+    pip install sphinx blockdiag seqdiag actdiag nwdiag
 
 RUN mkdir /java && \
     curl -sL https://sourceforge.net/projects/plantuml/files/plantuml.jar \
