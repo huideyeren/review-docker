@@ -1,4 +1,4 @@
-FROM debian:stretch-slim
+FROM ruby:2.5.3-slim-stretch
 MAINTAINER huideyeren
 
 RUN apt-get update && \
@@ -111,25 +111,25 @@ RUN apt-get install -y --no-install-recommends \
     zlib1g-dev && \
     apt-get clean
 
-RUN git clone https://github.com/sstephenson/rbenv.git /root/.rbenv && \
-    git clone https://github.com/sstephenson/ruby-build.git /root/.rbenv/plugins/ruby-build && \
-    /root/.rbenv/plugins/ruby-build/install.sh
-ENV PATH /root/.rbenv/bin:$PATH
-RUN which rbenv
-RUN echo 'eval "$(rbenv init -)"' >> /etc/profile.d/rbenv.sh && \
-    echo 'PATH="~/.rbenv/bin:$PATH"' >> ~/.profile && \
-    echo 'export $PATH' >> ~/.profile && \
-    echo 'eval "$(rbenv init -)"' >> ~/.profile && \
-    . ~/.profile
+# RUN git clone https://github.com/sstephenson/rbenv.git /root/.rbenv && \
+#     git clone https://github.com/sstephenson/ruby-build.git /root/.rbenv/plugins/ruby-build && \
+#     /root/.rbenv/plugins/ruby-build/install.sh
+# ENV PATH /root/.rbenv/bin:$PATH
+# RUN which rbenv
+# RUN echo 'eval "$(rbenv init -)"' >> /etc/profile.d/rbenv.sh && \
+#     echo 'PATH="~/.rbenv/bin:$PATH"' >> ~/.profile && \
+#     echo 'export $PATH' >> ~/.profile && \
+#     echo 'eval "$(rbenv init -)"' >> ~/.profile && \
+#     . ~/.profile
 
-ENV CONFIGURE_OPTS --disable-install-doc
-RUN rbenv install $(rbenv install -l | grep -v - | tail -1) && \
-    rbenv global $(rbenv install -l | grep -v - | tail -1)
-RUN echo $PATH && \
-    which ruby && \
-    which rbenv && \
-    ruby -v && \
-    rbenv versions
+# ENV CONFIGURE_OPTS --disable-install-doc
+# RUN rbenv install $(rbenv install -l | grep -v - | tail -1) && \
+#     rbenv global $(rbenv install -l | grep -v - | tail -1)
+# RUN echo $PATH && \
+#     which ruby && \
+#     which rbenv && \
+#     ruby -v && \
+#     rbenv versions
 
 # ENV RUBYOPT --jit
 
