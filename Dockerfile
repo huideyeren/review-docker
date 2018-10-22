@@ -116,7 +116,6 @@ RUN git clone https://github.com/sstephenson/rbenv.git /root/.rbenv && \
     /root/.rbenv/plugins/ruby-build/install.sh
 ENV PATH /root/.rbenv/bin:$PATH
 RUN which rbenv
-RUN echoz
 RUN echo 'eval "$(rbenv init -)"' >> /etc/profile.d/rbenv.sh && \
     echo 'PATH="~/.rbenv/bin:$PATH"' >> ~/.profile && \
     echo 'export $PATH' >> ~/.profile && \
