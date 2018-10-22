@@ -16,39 +16,39 @@ RUN echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
 RUN locale-gen en_US.UTF-8 && update-locale en_US.UTF-8
 ENV LANG en_US.UTF-8
 
-# RUN mkdir /noto
+RUN mkdir /noto
 
-# ADD https://noto-website.storage.googleapis.com/pkgs/NotoSansCJKjp-hinted.zip /noto
+ADD https://noto-website.storage.googleapis.com/pkgs/NotoSansCJKjp-hinted.zip /noto
 
-# WORKDIR /noto
+WORKDIR /noto
 
-# RUN ls
+RUN ls
 
-# RUN unzip NotoSansCJKjp-hinted.zip && \
-#     mkdir -p /usr/share/fonts/noto && \
-#     cp *.otf /usr/share/fonts/noto && \
-#     chmod 644 -R /usr/share/fonts/noto/ && \
-#     fc-cache -fv
+RUN unzip NotoSansCJKjp-hinted.zip && \
+    mkdir -p /usr/share/fonts/noto && \
+    cp *.otf /usr/share/fonts/noto && \
+    chmod 644 -R /usr/share/fonts/noto/ && \
+    fc-cache -fv
 
-# WORKDIR /
-# RUN rm -rf /noto
+WORKDIR /
+RUN rm -rf /noto
 
-# RUN mkdir /noto
+RUN mkdir /noto
 
-# ADD https://noto-website-2.storage.googleapis.com/pkgs/NotoSerifCJKjp-hinted.zip /noto
+ADD https://noto-website-2.storage.googleapis.com/pkgs/NotoSerifCJKjp-hinted.zip /noto
 
-# WORKDIR /noto
+WORKDIR /noto
 
-# RUN ls
+RUN ls
 
-# RUN unzip NotoSerifCJKjp-hinted.zip && \
-#     mkdir -p /usr/share/fonts/noto && \
-#     cp *.otf /usr/share/fonts/noto && \
-#     chmod 644 -R /usr/share/fonts/noto/ && \
-#     fc-cache -fv
+RUN unzip NotoSerifCJKjp-hinted.zip && \
+    mkdir -p /usr/share/fonts/noto && \
+    cp *.otf /usr/share/fonts/noto && \
+    chmod 644 -R /usr/share/fonts/noto/ && \
+    fc-cache -fv
 
-# WORKDIR /
-# RUN rm -rf /noto
+WORKDIR /
+RUN rm -rf /noto
 
 WORKDIR ~
 
