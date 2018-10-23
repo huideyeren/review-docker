@@ -138,7 +138,7 @@ RUN echo 'gem: --no-rdoc --no-ri' >> /.gemrc && \
     gem install bundler \
         rubyzip \
         nokogiri \
-        natto \
+        mecab \
         rake \
         review \
         review-peg --pre
