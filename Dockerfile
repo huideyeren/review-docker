@@ -125,11 +125,11 @@ RUN apt-get install -y --no-install-recommends \
 # ENV CONFIGURE_OPTS --disable-install-doc
 # RUN rbenv install $(rbenv install -l | grep -v - | tail -1) && \
 #     rbenv global $(rbenv install -l | grep -v - | tail -1)
-RUN echo $PATH && \
-    which ruby && \
-    which rbenv && \
-    ruby -v && \
-    rbenv versions
+# RUN echo $PATH && \
+#     which ruby && \
+#     which rbenv && \
+#     ruby -v && \
+#     rbenv versions
 
 # ENV RUBYOPT --jit
 
@@ -141,10 +141,15 @@ RUN echo 'gem: --no-rdoc --no-ri' >> /.gemrc && \
         natto \
         rake \
         review \
-        review-peg
+        review-peg --pre
 
 RUN easy_install pip && \
-    pip install sphinx blockdiag seqdiag actdiag nwdiag
+    pip install sphinx \
+                sphinxcontrib-blockdiag \
+                sphinxcontrib-seqdiag \
+                sphinxcontrib-actdiag \
+                sphinxcontrib-nwdiag \
+                sphinxcontrib-plantuml
 
 RUN mkdir /java && \
     curl -sL https://sourceforge.net/projects/plantuml/files/plantuml.jar \
