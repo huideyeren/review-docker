@@ -1,4 +1,4 @@
-FROM ruby:2.5.3-slim-stretch
+FROM ruby:latest
 MAINTAINER huideyeren
 
 RUN apt-get update && \
