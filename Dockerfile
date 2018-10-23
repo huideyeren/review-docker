@@ -1,4 +1,4 @@
-FROM ruby:2.5.3-slim-stretch
+FROM ruby:latest
 MAINTAINER huideyeren
 
 RUN apt-get update && \
@@ -125,15 +125,15 @@ RUN apt-get install -y --no-install-recommends \
 # ENV CONFIGURE_OPTS --disable-install-doc
 # RUN rbenv install $(rbenv install -l | grep -v - | tail -1) && \
 #     rbenv global $(rbenv install -l | grep -v - | tail -1)
-# RUN echo $PATH && \
-#     which ruby && \
-#     which rbenv && \
-#     ruby -v && \
-#     rbenv versions
+RUN echo $PATH && \
+    which ruby && \
+    which rbenv && \
+    ruby -v && \
+    rbenv versions
 
 # ENV RUBYOPT --jit
 
-RUN echo 'gem: --no-rdoc --no-ri --prerelease' >> /.gemrc && \
+RUN echo 'gem: --no-rdoc --no-ri' >> /.gemrc && \
     gem update && \
     gem install bundler \
         rubyzip \
