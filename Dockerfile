@@ -140,8 +140,8 @@ RUN echo 'gem: --no-rdoc --no-ri' >> /.gemrc && \
         nokogiri \
         mecab \
         rake \
-        review \
-        review-peg --pre
+        review --pre \
+        review-peg
 
 RUN easy_install pip && \
     pip install sphinx \
