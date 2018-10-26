@@ -70,6 +70,8 @@ RUN apt-get install -y --no-install-recommends \
 
 RUN texhash
 
+RUN mktexlsr
+
 RUN luaotfload-tool --update
 
 RUN apt-get install -y --no-install-recommends \
