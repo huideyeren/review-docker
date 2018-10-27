@@ -76,7 +76,9 @@ RUN export TEXMF=`kpsewhich -var-value=TEXMFLOCAL` && \
 
 RUN git clone https://github.com/zr-tex8r/PXchfon.git
 
-WORKDIR ~/PXchfon
+WORKDIR /root/PXchfon
+
+RUN ls /root/PXchfon
 
 RUN cp -v ./*.sty $TEXMF/tex/platex/pxchfon/ && \
     cp -v ./*.tfm $TEXMF/fonts/tfm/public/pxchfon/ && \
