@@ -123,7 +123,7 @@ RUN echo 'gem: --no-rdoc --no-ri' >> /.gemrc && \
         nokogiri \
         mecab \
         rake \
-        review --pre \
+        review \
         review-peg
 
 RUN easy_install pip && \
