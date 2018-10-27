@@ -50,7 +50,7 @@ RUN unzip NotoSerifCJKjp-hinted.zip && \
 WORKDIR /
 RUN rm -rf /noto
 
-WORKDIR ~
+WORKDIR /root
 
 RUN apt-get install -y --no-install-recommends \
     texlive-lang-japanese \
@@ -86,7 +86,7 @@ RUN cp -v ./*.sty $TEXMF/tex/platex/pxchfon/ && \
     cp -v ./pxcjk0.sfd $TEXMF/fonts/sfd/pxchfon/ && \
     cp -v ./*.def $TEXMF/tex/platex/pxchfon/
 
-WORKDIR ~
+WORKDIR /root
 
 RUN texhash
 
