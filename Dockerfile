@@ -26,7 +26,7 @@ RUN ls
 
 RUN unzip NotoSansCJKjp-hinted.zip && \
     mkdir -p /usr/share/fonts/noto && \
-    cp *.otf /usr/share/fonts/noto && \
+    mv *.otf /usr/share/fonts/noto && \
     chmod 644 -R /usr/share/fonts/noto/ && \
     fc-cache -fv
 
@@ -43,7 +43,7 @@ RUN ls
 
 RUN unzip NotoSerifCJKjp-hinted.zip && \
     mkdir -p /usr/share/fonts/noto && \
-    cp *.otf /usr/share/fonts/noto && \
+    mv *.otf /usr/share/fonts/noto && \
     chmod 644 -R /usr/share/fonts/noto/ && \
     fc-cache -fv
 
@@ -81,11 +81,11 @@ RUN mkdir -p /usr/local/share/texmf/tex/platex/pxchfon && \
     mkdir -p /usr/local/share/texmf/fonts/tfm/public/pxchfon && \
     mkdir -p /usr/local/share/texmf/fonts/vf/public/pxchfon && \
     mkdir -p /usr/local/share/texmf/fonts/sfd/pxchfon && \
-    cp -v ./*.sty /usr/local/share/texmf/tex/platex/pxchfon && \
-    cp -v ./*.tfm /usr/local/share/texmf/fonts/tfm/public/pxchfon && \
-    cp -v ./*.vf /usr/local/share/texmf/fonts/vf/public/pxchfon && \
-    cp -v ./PXcjk0.sfd /usr/local/share/texmf/fonts/sfd/pxchfon && \
-    cp -v ./*.def /usr/local/share/texmf/tex/platex/pxchfon
+    mv ./*.sty /usr/local/share/texmf/tex/platex/pxchfon && \
+    mv ./*.tfm /usr/local/share/texmf/fonts/tfm/public/pxchfon && \
+    mv ./*.vf /usr/local/share/texmf/fonts/vf/public/pxchfon && \
+    mv ./PXcjk0.sfd /usr/local/share/texmf/fonts/sfd/pxchfon && \
+    mv ./*.def /usr/local/share/texmf/tex/platex/pxchfon
 
 WORKDIR /root
 
@@ -158,7 +158,8 @@ RUN mkdir /java && \
 
 RUN apt-get install -y gnupg && apt-get clean && \
     curl -sL https://deb.nodesource.com/setup_8.x | bash - && \
-    apt-get install -y nodejs && npm install -g yarn
+    apt-get install -y nodejs && npm install -g yarn && \
+    apt-get clean
 
 RUN apt-get install -y sudo cron && apt-get clean && \
     git clone https://github.com/neologd/mecab-ipadic-neologd.git && \
