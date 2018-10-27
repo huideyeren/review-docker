@@ -71,6 +71,19 @@ RUN apt-get install -y --no-install-recommends \
 RUN kpsewhich NotoSerifCJKjp-Regular.otf && \
     kpsewhich NotoSansCJKjp-Black.otf
 
+RUN export TEXMF=`kpsewhich -var-value=TEXMFLOCAL` && \
+    git clone https://github.com/zr-tex8r/PXchfon.git
+
+WORKDIR /PXchfon
+
+RUN cp *.sty $TEXMF/tex/platex/pxchfon/ && \
+    cp *.tfm $TEXMF/fonts/tfm/public/pxchfon/ && \
+    cp *.vf $TEXMF/fonts/vf/public/pxchfon/ && \
+    cp pxcjk0.sfd $TEXMF/fonts/sfd/pxchfon/ && \
+    cp *.def $TEXMF/tex/platex/pxchfon/
+
+WORKDIR /
+
 RUN texhash
 
 RUN mktexlsr
