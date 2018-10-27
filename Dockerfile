@@ -82,7 +82,7 @@ RUN cp *.sty $TEXMF/tex/platex/pxchfon/ && \
     cp pxcjk0.sfd $TEXMF/fonts/sfd/pxchfon/ && \
     cp *.def $TEXMF/tex/platex/pxchfon/
 
-WORKDIR /
+WORKDIR ~
 
 RUN texhash
 
