@@ -26,7 +26,7 @@ RUN ls
 
 RUN unzip NotoSansCJKjp-hinted.zip && \
     mkdir -p /usr/share/fonts/noto && \
-    cp *.otf /usr/share/fonts/noto && \
+    mv *.otf /usr/share/fonts/noto && \
     chmod 644 -R /usr/share/fonts/noto/ && \
     fc-cache -fv
 
@@ -43,14 +43,14 @@ RUN ls
 
 RUN unzip NotoSerifCJKjp-hinted.zip && \
     mkdir -p /usr/share/fonts/noto && \
-    cp *.otf /usr/share/fonts/noto && \
+    mv *.otf /usr/share/fonts/noto && \
     chmod 644 -R /usr/share/fonts/noto/ && \
     fc-cache -fv
 
 WORKDIR /
 RUN rm -rf /noto
 
-WORKDIR ~
+WORKDIR /root
 
 RUN apt-get install -y --no-install-recommends \
     texlive-lang-japanese \
@@ -68,7 +68,30 @@ RUN apt-get install -y --no-install-recommends \
 
 # RUN texhash && kanji-config-updmap-sys ipaex
 
+RUN kpsewhich NotoSerifCJKjp-Regular.otf && \
+    kpsewhich NotoSansCJKjp-Black.otf
+
+RUN git clone https://github.com/zr-tex8r/PXchfon.git
+
+WORKDIR /root/PXchfon
+
+RUN ls /root/PXchfon
+
+RUN mkdir -p /usr/local/share/texmf/tex/platex/pxchfon && \
+    mkdir -p /usr/local/share/texmf/fonts/tfm/public/pxchfon && \
+    mkdir -p /usr/local/share/texmf/fonts/vf/public/pxchfon && \
+    mkdir -p /usr/local/share/texmf/fonts/sfd/pxchfon && \
+    mv ./*.sty /usr/local/share/texmf/tex/platex/pxchfon && \
+    mv ./*.tfm /usr/local/share/texmf/fonts/tfm/public/pxchfon && \
+    mv ./*.vf /usr/local/share/texmf/fonts/vf/public/pxchfon && \
+    mv ./PXcjk0.sfd /usr/local/share/texmf/fonts/sfd/pxchfon && \
+    mv ./*.def /usr/local/share/texmf/tex/platex/pxchfon
+
+WORKDIR /root
+
 RUN texhash
+
+RUN mktexlsr
 
 RUN luaotfload-tool --update
 
@@ -111,28 +134,6 @@ RUN apt-get install -y --no-install-recommends \
     zlib1g-dev && \
     apt-get clean
 
-# RUN git clone https://github.com/sstephenson/rbenv.git /root/.rbenv && \
-#     git clone https://github.com/sstephenson/ruby-build.git /root/.rbenv/plugins/ruby-build && \
-#     /root/.rbenv/plugins/ruby-build/install.sh
-# ENV PATH /root/.rbenv/bin:$PATH
-# RUN which rbenv
-# RUN echo 'eval "$(rbenv init -)"' >> /etc/profile.d/rbenv.sh && \
-#     echo 'PATH="~/.rbenv/bin:$PATH"' >> ~/.profile && \
-#     echo 'export $PATH' >> ~/.profile && \
-#     echo 'eval "$(rbenv init -)"' >> ~/.profile && \
-#     . ~/.profile
-
-# ENV CONFIGURE_OPTS --disable-install-doc
-# RUN rbenv install $(rbenv install -l | grep -v - | tail -1) && \
-#     rbenv global $(rbenv install -l | grep -v - | tail -1)
-# RUN echo $PATH && \
-#     which ruby && \
-#     which rbenv && \
-#     ruby -v && \
-#     rbenv versions
-
-# ENV RUBYOPT --jit
-
 RUN echo 'gem: --no-rdoc --no-ri' >> /.gemrc && \
     gem update && \
     gem install bundler \
@@ -157,7 +158,8 @@ RUN mkdir /java && \
 
 RUN apt-get install -y gnupg && apt-get clean && \
     curl -sL https://deb.nodesource.com/setup_8.x | bash - && \
-    apt-get install -y nodejs && npm install -g yarn
+    apt-get install -y nodejs && npm install -g yarn && \
+    apt-get clean
 
 RUN apt-get install -y sudo cron && apt-get clean && \
     git clone https://github.com/neologd/mecab-ipadic-neologd.git && \
