@@ -68,6 +68,9 @@ RUN apt-get install -y --no-install-recommends \
 
 # RUN texhash && kanji-config-updmap-sys ipaex
 
+RUN kpsewhich NotoSerifCJK-Regular.ttc && \
+    kpsewhich NotoSansCJK-Black.ttc
+
 RUN texhash
 
 RUN mktexlsr
