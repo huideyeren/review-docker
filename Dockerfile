@@ -70,7 +70,7 @@ RUN apt-get install -y --no-install-recommends \
 
 RUN kpsewhich NotoSerifCJKjp-Regular.otf && \
     kpsewhich NotoSansCJKjp-Black.otf
-
+    
 RUN git clone https://github.com/zr-tex8r/PXchfon.git
 
 WORKDIR /root/PXchfon
