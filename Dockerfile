@@ -70,7 +70,7 @@ RUN apt-get install -y --no-install-recommends \
 
 RUN kpsewhich NotoSerifCJKjp-Regular.otf && \
     kpsewhich NotoSansCJKjp-Black.otf
-
+    
 RUN git clone https://github.com/zr-tex8r/PXchfon.git
 
 WORKDIR /root/PXchfon
@@ -89,48 +89,30 @@ RUN mkdir -p /usr/local/share/texmf/tex/platex/pxchfon && \
 
 WORKDIR /root
 
-RUN texhash
+RUN mkdir -p /usr/share/man/man1
 
-RUN mktexlsr
-
-RUN luaotfload-tool --update
-
-RUN apt-get install -y --no-install-recommends \
+RUN texhash && mktexlsr && luaotfload-tool --update && \
+    apt-get install -y --no-install-recommends \
     ghostscript \
-    gsfonts && \
-    apt-get clean
-
-RUN apt-get install -y --no-install-recommends \
+    gsfonts \
     zip \
     mecab \
     mecab-ipadic-utf8 \
     libmecab-dev \
     file \
     xz-utils \
-    poppler-data && \
-    apt-get clean
-
-RUN apt-get install -y --no-install-recommends \
+    poppler-data \
     graphviz \
     fonts-ipafont \
     python-setuptools \
     python-imaging  \
-    python-reportlab && \
-    apt-get clean
-
-RUN mkdir -p /usr/share/man/man1
-
-RUN apt-get install -y --no-install-recommends \
-    default-jre && \
-    apt-get clean
-
-RUN apt-get install -y --no-install-recommends \
-    librsvg2-bin && \
-    apt-get clean
-
-RUN apt-get install -y --no-install-recommends \
+    python-reportlab \
+    default-jre \
+    librsvg2-bin \
     libssl-dev \
     libreadline-dev \
+    sudo \
+    cron \
     zlib1g-dev && \
     apt-get clean
 
@@ -141,7 +123,7 @@ RUN echo 'gem: --no-rdoc --no-ri' >> /.gemrc && \
         nokogiri \
         mecab \
         rake \
-        review \
+        review --pre \
         review-peg
 
 RUN easy_install pip && \
@@ -161,8 +143,7 @@ RUN apt-get install -y gnupg && apt-get clean && \
     apt-get install -y nodejs && npm install -g yarn && \
     apt-get clean
 
-RUN apt-get install -y sudo cron && apt-get clean && \
-    git clone https://github.com/neologd/mecab-ipadic-neologd.git && \
+RUN git clone https://github.com/neologd/mecab-ipadic-neologd.git && \
     cd mecab-ipadic-neologd && \
     sudo bin/install-mecab-ipadic-neologd -y && \
     sudo echo dicdir = /usr/lib/x86_64-linux-gnu/mecab/dic/mecab-ipadic-neologd > /etc/mecabrc
