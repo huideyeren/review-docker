@@ -77,11 +77,15 @@ WORKDIR /root/PXchfon
 
 RUN ls /root/PXchfon
 
-RUN cp -v ./*.sty /usr/local/share/texmf/tex/platex/pxchfon/ && \
-    cp -v ./*.tfm /usr/local/share/texmf/fonts/tfm/public/pxchfon/ && \
-    cp -v ./*.vf /usr/local/share/texmf/fonts/vf/public/pxchfon/ && \
-    cp -v ./pxcjk0.sfd /usr/local/share/texmf/fonts/sfd/pxchfon/ && \
-    cp -v ./*.def /usr/local/share/texmf/tex/platex/pxchfon/
+RUN mkdir /usr/local/share/texmf/tex/platex/pxchfon && \
+    mkdir /usr/local/share/texmf/fonts/tfm/public/pxchfon && \
+    mkdir /usr/local/share/texmf/fonts/vf/public/pxchfon && \
+    mkdir /usr/local/share/texmf/fonts/sfd/pxchfon && \
+    cp -v ./*.sty /usr/local/share/texmf/tex/platex/pxchfon && \
+    cp -v ./*.tfm /usr/local/share/texmf/fonts/tfm/public/pxchfon && \
+    cp -v ./*.vf /usr/local/share/texmf/fonts/vf/public/pxchfon && \
+    cp -v ./pxcjk0.sfd /usr/local/share/texmf/fonts/sfd/pxchfon && \
+    cp -v ./*.def /usr/local/share/texmf/tex/platex/pxchfon
 
 WORKDIR /root
 
