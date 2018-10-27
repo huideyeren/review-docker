@@ -71,20 +71,17 @@ RUN apt-get install -y --no-install-recommends \
 RUN kpsewhich NotoSerifCJKjp-Regular.otf && \
     kpsewhich NotoSansCJKjp-Black.otf
 
-RUN export TEXMF=`kpsewhich -var-value=TEXMFLOCAL` && \
-    echo $TEXMF
-
 RUN git clone https://github.com/zr-tex8r/PXchfon.git
 
 WORKDIR /root/PXchfon
 
 RUN ls /root/PXchfon
 
-RUN cp -v ./*.sty $TEXMF/tex/platex/pxchfon/ && \
-    cp -v ./*.tfm $TEXMF/fonts/tfm/public/pxchfon/ && \
-    cp -v ./*.vf $TEXMF/fonts/vf/public/pxchfon/ && \
-    cp -v ./pxcjk0.sfd $TEXMF/fonts/sfd/pxchfon/ && \
-    cp -v ./*.def $TEXMF/tex/platex/pxchfon/
+RUN cp -v ./*.sty /usr/local/share/texmf/tex/platex/pxchfon/ && \
+    cp -v ./*.tfm /usr/local/share/texmf/fonts/tfm/public/pxchfon/ && \
+    cp -v ./*.vf /usr/local/share/texmf/fonts/vf/public/pxchfon/ && \
+    cp -v ./pxcjk0.sfd /usr/local/share/texmf/fonts/sfd/pxchfon/ && \
+    cp -v ./*.def /usr/local/share/texmf/tex/platex/pxchfon/
 
 WORKDIR /root
 
@@ -132,28 +129,6 @@ RUN apt-get install -y --no-install-recommends \
     libreadline-dev \
     zlib1g-dev && \
     apt-get clean
-
-# RUN git clone https://github.com/sstephenson/rbenv.git /root/.rbenv && \
-#     git clone https://github.com/sstephenson/ruby-build.git /root/.rbenv/plugins/ruby-build && \
-#     /root/.rbenv/plugins/ruby-build/install.sh
-# ENV PATH /root/.rbenv/bin:$PATH
-# RUN which rbenv
-# RUN echo 'eval "$(rbenv init -)"' >> /etc/profile.d/rbenv.sh && \
-#     echo 'PATH="~/.rbenv/bin:$PATH"' >> ~/.profile && \
-#     echo 'export $PATH' >> ~/.profile && \
-#     echo 'eval "$(rbenv init -)"' >> ~/.profile && \
-#     . ~/.profile
-
-# ENV CONFIGURE_OPTS --disable-install-doc
-# RUN rbenv install $(rbenv install -l | grep -v - | tail -1) && \
-#     rbenv global $(rbenv install -l | grep -v - | tail -1)
-# RUN echo $PATH && \
-#     which ruby && \
-#     which rbenv && \
-#     ruby -v && \
-#     rbenv versions
-
-# ENV RUBYOPT --jit
 
 RUN echo 'gem: --no-rdoc --no-ri' >> /.gemrc && \
     gem update && \
