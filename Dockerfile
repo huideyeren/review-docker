@@ -16,39 +16,39 @@ RUN echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
 RUN locale-gen en_US.UTF-8 && update-locale en_US.UTF-8
 ENV LANG en_US.UTF-8
 
-RUN mkdir /noto
+# RUN mkdir /noto
 
-ADD https://noto-website.storage.googleapis.com/pkgs/NotoSansCJKjp-hinted.zip /noto
+# ADD https://noto-website.storage.googleapis.com/pkgs/NotoSansCJKjp-hinted.zip /noto
 
-WORKDIR /noto
+# WORKDIR /noto
 
-RUN ls
+# RUN ls
 
-RUN unzip NotoSansCJKjp-hinted.zip && \
-    mkdir -p /usr/share/fonts/noto && \
-    mv *.otf /usr/share/fonts/noto && \
-    chmod 644 -R /usr/share/fonts/noto/ && \
-    fc-cache -fv
+# RUN unzip NotoSansCJKjp-hinted.zip && \
+#     mkdir -p /usr/share/fonts/noto && \
+#     mv *.otf /usr/share/fonts/noto && \
+#     chmod 644 -R /usr/share/fonts/noto/ && \
+#     fc-cache -fv
 
-WORKDIR /
-RUN rm -rf /noto
+# WORKDIR /
+# RUN rm -rf /noto
 
-RUN mkdir /noto
+# RUN mkdir /noto
 
-ADD https://noto-website-2.storage.googleapis.com/pkgs/NotoSerifCJKjp-hinted.zip /noto
+# ADD https://noto-website-2.storage.googleapis.com/pkgs/NotoSerifCJKjp-hinted.zip /noto
 
-WORKDIR /noto
+# WORKDIR /noto
 
-RUN ls
+# RUN ls
 
-RUN unzip NotoSerifCJKjp-hinted.zip && \
-    mkdir -p /usr/share/fonts/noto && \
-    mv *.otf /usr/share/fonts/noto && \
-    chmod 644 -R /usr/share/fonts/noto/ && \
-    fc-cache -fv
+# RUN unzip NotoSerifCJKjp-hinted.zip && \
+#     mkdir -p /usr/share/fonts/noto && \
+#     mv *.otf /usr/share/fonts/noto && \
+#     chmod 644 -R /usr/share/fonts/noto/ && \
+#     fc-cache -fv
 
-WORKDIR /
-RUN rm -rf /noto
+# WORKDIR /
+# RUN rm -rf /noto
 
 WORKDIR /root
 
@@ -68,38 +68,37 @@ RUN apt-get install -y --no-install-recommends \
 
 # RUN texhash && kanji-config-updmap-sys ipaex
 
-RUN kpsewhich NotoSerifCJKjp-Regular.otf && \
-    kpsewhich NotoSansCJKjp-Black.otf
+# RUN kpsewhich NotoSerifCJKjp-Regular.otf && \
+#     kpsewhich NotoSansCJKjp-Black.otf
 
-RUN git clone https://github.com/zr-tex8r/PXchfon.git && \
-    git clone https://github.com/zr-tex8r/PXufont.git
+# RUN git clone https://github.com/zr-tex8r/PXchfon.git && \
+#     git clone https://github.com/zr-tex8r/PXufont.git
 
-WORKDIR /root/PXufont
+# WORKDIR /root/PXufont
 
-RUN mkdir -p /usr/local/share/texmf/tex/platex/pxufont && \
-    mkdir -p /usr/local/share/texmf/fonts/tfm/public/pxufont && \
-    mkdir -p /usr/local/share/texmf/fonts/vf/public/pxufont && \
-    mv ./*.sty /usr/local/share/texmf/tex/platex/pxufont && \
-    mv ./tfm/*.tfm /usr/local/share/texmf/fonts/tfm/public/pxufont && \
-    mv ./vf/*.vf /usr/local/share/texmf/fonts/vf/public/pxufont
+# RUN mkdir -p /usr/local/share/texmf/tex/platex/pxufont && \
+#     mkdir -p /usr/local/share/texmf/fonts/tfm/public/pxufont && \
+#     mkdir -p /usr/local/share/texmf/fonts/vf/public/pxufont && \
+#     mv ./*.sty /usr/local/share/texmf/tex/platex/pxufont && \
+#     mv ./tfm/*.tfm /usr/local/share/texmf/fonts/tfm/public/pxufont && \
+#     mv ./vf/*.vf /usr/local/share/texmf/fonts/vf/public/pxufont
 
-WORKDIR /root/PXchfon
+# WORKDIR /root/PXchfon
 
-RUN mkdir -p /usr/local/share/texmf/tex/platex/pxchfon && \
-    mkdir -p /usr/local/share/texmf/fonts/tfm/public/pxchfon && \
-    mkdir -p /usr/local/share/texmf/fonts/vf/public/pxchfon && \
-    mkdir -p /usr/local/share/texmf/fonts/sfd/pxchfon && \
-    mv ./*.sty /usr/local/share/texmf/tex/platex/pxchfon && \
-    mv ./*.tfm /usr/local/share/texmf/fonts/tfm/public/pxchfon && \
-    mv ./*.vf /usr/local/share/texmf/fonts/vf/public/pxchfon && \
-    mv ./PXcjk0.sfd /usr/local/share/texmf/fonts/sfd/pxchfon && \
-    mv ./*.def /usr/local/share/texmf/tex/platex/pxchfon
+# RUN mkdir -p /usr/local/share/texmf/tex/platex/pxchfon && \
+#     mkdir -p /usr/local/share/texmf/fonts/tfm/public/pxchfon && \
+#     mkdir -p /usr/local/share/texmf/fonts/vf/public/pxchfon && \
+#     mkdir -p /usr/local/share/texmf/fonts/sfd/pxchfon && \
+#     mv ./*.sty /usr/local/share/texmf/tex/platex/pxchfon && \
+#     mv ./*.tfm /usr/local/share/texmf/fonts/tfm/public/pxchfon && \
+#     mv ./*.vf /usr/local/share/texmf/fonts/vf/public/pxchfon && \
+#     mv ./PXcjk0.sfd /usr/local/share/texmf/fonts/sfd/pxchfon && \
+#     mv ./*.def /usr/local/share/texmf/tex/platex/pxchfon
 
-WORKDIR /root
+# WORKDIR /root
 
-RUN mkdir -p /usr/share/man/man1
-
-RUN texhash && mktexlsr && luaotfload-tool --update && \
+RUN mkdir -p /usr/share/man/man1 && \
+    texhash && mktexlsr && luaotfload-tool --update && \
     kanji-config-updmap-sys ipaex && \
     apt-get install -y --no-install-recommends \
     ghostscript \
