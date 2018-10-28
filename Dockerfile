@@ -70,12 +70,20 @@ RUN apt-get install -y --no-install-recommends \
 
 RUN kpsewhich NotoSerifCJKjp-Regular.otf && \
     kpsewhich NotoSansCJKjp-Black.otf
-    
-RUN git clone https://github.com/zr-tex8r/PXchfon.git
+
+RUN git clone https://github.com/zr-tex8r/PXchfon.git && \
+    git clone https://github.com/zr-tex8r/PXufont.git
+
+WORKDIR /root/PXufont
+
+RUN mkdir -p /usr/local/share/texmf/tex/platex/pxufont && \
+    mkdir -p /usr/local/share/texmf/fonts/tfm/public/pxufont && \
+    mkdir -p /usr/local/share/texmf/fonts/vf/public/pxufont && \
+    mv ./*.sty /usr/local/share/texmf/tex/platex/pxufont && \
+    mv ./tfm/*.tfm /usr/local/share/texmf/fonts/tfm/public/pxufont && \
+    mv ./vf/*.vf /usr/local/share/texmf/fonts/vf/public/pxufont
 
 WORKDIR /root/PXchfon
-
-RUN ls /root/PXchfon
 
 RUN mkdir -p /usr/local/share/texmf/tex/platex/pxchfon && \
     mkdir -p /usr/local/share/texmf/fonts/tfm/public/pxchfon && \
