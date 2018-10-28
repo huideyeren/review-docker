@@ -100,6 +100,7 @@ WORKDIR /root
 RUN mkdir -p /usr/share/man/man1
 
 RUN texhash && mktexlsr && luaotfload-tool --update && \
+    kanji-config-updmap-sys ipaex && \
     apt-get install -y --no-install-recommends \
     ghostscript \
     gsfonts \
