@@ -62,8 +62,7 @@ RUN echo 'gem: --no-rdoc --no-ri' >> /.gemrc && \
         rake \
         review
 
-RUN easy_install pip && \
-    pip install sphinx \
+RUN pip install sphinx \
                 sphinxcontrib-blockdiag \
                 sphinxcontrib-seqdiag \
                 sphinxcontrib-actdiag \
