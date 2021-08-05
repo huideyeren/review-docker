@@ -44,6 +44,7 @@ RUN mkdir -p /usr/share/man/man1 && \
     python3 \
     python3-setuptools \
     python3-pip \
+    python3-dev \
     libjpeg-dev \
     default-jre \
     librsvg2-bin \
