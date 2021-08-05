@@ -57,12 +57,7 @@ RUN mkdir -p /usr/share/man/man1 && \
 
 RUN echo 'gem: --no-rdoc --no-ri' >> /.gemrc && \
     gem update && \
-    gem install bundler \
-        rubyzip \
-        nokogiri \
-        mecab \
-        rake \
-        review
+    bundle install
 
 RUN pip3 install sphinx \
                 sphinxcontrib-blockdiag \
