@@ -41,9 +41,9 @@ RUN mkdir -p /usr/share/man/man1 && \
     xz-utils \
     poppler-data \
     graphviz \
-    python-setuptools \
-    python-pil  \
-    python-reportlab \
+    python3 \
+    python3-setuptools \
+    libjpeg-dev \
     default-jre \
     librsvg2-bin \
     libssl-dev \
@@ -62,12 +62,14 @@ RUN echo 'gem: --no-rdoc --no-ri' >> /.gemrc && \
         rake \
         review
 
-RUN pip install sphinx \
+RUN pip3 install sphinx \
                 sphinxcontrib-blockdiag \
                 sphinxcontrib-seqdiag \
                 sphinxcontrib-actdiag \
                 sphinxcontrib-nwdiag \
-                sphinxcontrib-plantuml
+                sphinxcontrib-plantuml \
+                pillow \
+                reportlab
 
 RUN mkdir /java && \
     curl -sL https://sourceforge.net/projects/plantuml/files/plantuml.jar \
