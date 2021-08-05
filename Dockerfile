@@ -43,6 +43,7 @@ RUN mkdir -p /usr/share/man/man1 && \
     graphviz \
     python3 \
     python3-setuptools \
+    python3-pip \
     libjpeg-dev \
     default-jre \
     librsvg2-bin \
