@@ -56,8 +56,7 @@ RUN mkdir -p /usr/share/man/man1 && \
     apt-get clean
 
 RUN echo 'gem: --no-rdoc --no-ri' >> /.gemrc && \
-    gem update && \
-    bundle install
+    gem update
 
 RUN pip3 install sphinx \
                 sphinxcontrib-blockdiag \
