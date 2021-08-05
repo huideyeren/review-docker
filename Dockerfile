@@ -26,6 +26,7 @@ RUN apt-get install -y --no-install-recommends \
     texlive-pictures \
     texlive-luatex \
     texlive-xetex \
+    fonts-noto-cjk \
     fonts-noto-cjk-extra \
     fonts-ipafont && \
     apt-get clean
