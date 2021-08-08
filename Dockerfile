@@ -65,6 +65,8 @@ RUN pip3 install sphinx \
                 sphinxcontrib-nwdiag \
                 sphinxcontrib-plantuml \
                 pillow \
+                blockdiag \
+                blockdiag[pdf] \
                 reportlab
 
 RUN mkdir /java && \
