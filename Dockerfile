@@ -1,18 +1,29 @@
-FROM ruby:slim
+FROM debian:bullseye-slim
 
 RUN apt-get update && \
-    apt-get install -y locales \
-                       git-core \
+    apt-get install -y autoconf \ 
+                       bison \
                        build-essential \
+                       libssl-dev \
+                       libyaml-dev \
+                       libreadline6-dev \
+                       zlib1g-dev \
+                       libncurses5-dev \
+                       libffi-dev \
+                       libgdbm6 \
+                       libgdbm-dev \
+                       libdb-dev \
+                       locales \
+                       git-core \
                        unzip \
                        fontconfig \
                        apt-utils \
                        bash \
                        curl && \
-    apt-get clean
+                       apt-get clean
 
-RUN echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
-RUN locale-gen en_US.UTF-8 && update-locale en_US.UTF-8
+RUN echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen && \
+    locale-gen en_US.UTF-8 && update-locale en_US.UTF-8
 ENV LANG en_US.UTF-8
 
 RUN apt-get install -y --no-install-recommends \
@@ -58,6 +69,10 @@ RUN mkdir -p /usr/share/man/man1 && \
     cron \
     zlib1g-dev && \
     apt-get clean
+
+RUN git clone https://github.com/rbenv/ruby-build.git && \
+    PREFIX=/usr/local ./ruby-build/install.sh && \
+    ruby-build 3.0.2 /usr/local
 
 RUN echo 'gem: --no-rdoc --no-ri' >> /.gemrc && \
     gem update
