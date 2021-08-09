@@ -48,6 +48,7 @@ RUN mkdir -p /usr/share/man/man1 && \
     python3 \
     python3-setuptools \
     python3-pip \
+    python3-dev \
     libjpeg-dev \
     default-jre \
     librsvg2-bin \
@@ -59,13 +60,7 @@ RUN mkdir -p /usr/share/man/man1 && \
     apt-get clean
 
 RUN echo 'gem: --no-rdoc --no-ri' >> /.gemrc && \
-    gem update && \
-    gem install bundler \
-        rubyzip \
-        nokogiri \
-        mecab \
-        rake \
-        review
+    gem update
 
 RUN pip3 install sphinx \
                 sphinxcontrib-blockdiag \
@@ -74,6 +69,8 @@ RUN pip3 install sphinx \
                 sphinxcontrib-nwdiag \
                 sphinxcontrib-plantuml \
                 pillow \
+                blockdiag \
+                blockdiag[pdf] \
                 reportlab
 
 RUN mkdir /java && \
