@@ -32,9 +32,12 @@ RUN apt-get install -y --no-install-recommends \
     apt-get clean
 
 RUN mkdir -p /usr/share/man/man1 && \
-    texhash && mktexlsr && luaotfload-tool --update && \
-    kanji-config-updmap-sys noto && \
-    apt-get install -y --no-install-recommends \
+    texhash && mktexlsr && luaotfload-tool --update
+#     kanji-config-updmap-sys noto && \
+
+RUN kanji-config-updmap-sys ipaex
+
+RUN apt-get install -y --no-install-recommends \
     ghostscript \
     gsfonts \
     zip \
@@ -89,3 +92,4 @@ RUN git clone https://github.com/neologd/mecab-ipadic-neologd.git && \
 
 RUN mkdir /docs
 WORKDIR /docs
+CMD [ "bash" ]
