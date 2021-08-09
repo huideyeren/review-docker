@@ -25,11 +25,15 @@ RUN apt-get install -y --no-install-recommends \
     fonts-texgyre \
     texlive-pictures \
     texlive-luatex \
-    texlive-xetex && \
+    texlive-xetex \
+    fonts-noto-cjk \
+    fonts-noto-cjk-extra \
+    fonts-ipafont && \
     apt-get clean
 
 RUN mkdir -p /usr/share/man/man1 && \
     texhash && mktexlsr && luaotfload-tool --update && \
+    kanji-config-updmap-sys noto && \
     apt-get install -y --no-install-recommends \
     ghostscript \
     gsfonts \
