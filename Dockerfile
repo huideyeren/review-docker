@@ -44,7 +44,7 @@ RUN apt-get install -y --no-install-recommends \
 
 RUN mkdir -p /usr/share/man/man1 && \
     texhash && mktexlsr && luaotfload-tool --update && \
-    kanji-config-updmap-sys ipaex && \
+    kanji-config-updmap-sys noto && \
     apt-get install -y --no-install-recommends \
     ghostscript \
     gsfonts \
