@@ -19,7 +19,8 @@ RUN apt-get update && \
                        fontconfig \
                        apt-utils \
                        bash \
-                       curl && \
+                       curl \
+                       sudo && \
                        apt-get clean
 
 RUN echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen && \
@@ -94,13 +95,19 @@ RUN mkdir /java && \
 
 RUN apt-get install -y gnupg && apt-get clean && \
     curl -sL https://deb.nodesource.com/setup_lts.x | bash - && \
-    apt-get install -y nodejs && npm install -g yarn && \
-    apt-get clean
+    apt-get install -y nodejs && apt-get clean && \
+    npm install -g yarn textlint-plugin-review textlint-rule-preset-japanese
 
 RUN git clone https://github.com/neologd/mecab-ipadic-neologd.git && \
     cd mecab-ipadic-neologd && \
     sudo bin/install-mecab-ipadic-neologd -y && \
     sudo echo dicdir = /usr/lib/x86_64-linux-gnu/mecab/dic/mecab-ipadic-neologd > /etc/mecabrc
 
-RUN mkdir /docs
-WORKDIR /docs
+ARG USERNAME=user
+ARG GROUPNAME=user
+ARG UID=1000
+ARG GID=1000
+RUN groupadd -g $GID $GROUPNAME && \
+    useradd -m -s /bin/bash -u $UID -g $GID $USERNAME
+USER $USERNAME
+WORKDIR /home/$USERNAME/
