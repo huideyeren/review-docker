@@ -104,4 +104,3 @@ RUN git clone https://github.com/neologd/mecab-ipadic-neologd.git && \
 
 RUN mkdir /docs
 WORKDIR /docs
-CMD [ "bash" ]
