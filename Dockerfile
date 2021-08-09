@@ -32,12 +32,9 @@ RUN apt-get install -y --no-install-recommends \
     apt-get clean
 
 RUN mkdir -p /usr/share/man/man1 && \
-    texhash && mktexlsr && luaotfload-tool --update
-#     kanji-config-updmap-sys noto && \
-
-RUN kanji-config-updmap-sys ipaex
-
-RUN apt-get install -y --no-install-recommends \
+    texhash && mktexlsr && luaotfload-tool --update && \
+    kanji-config-updmap-sys ipaex && \
+    apt-get install -y --no-install-recommends \
     ghostscript \
     gsfonts \
     zip \
