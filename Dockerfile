@@ -103,11 +103,5 @@ RUN git clone https://github.com/neologd/mecab-ipadic-neologd.git && \
     sudo bin/install-mecab-ipadic-neologd -y && \
     sudo echo dicdir = /usr/lib/x86_64-linux-gnu/mecab/dic/mecab-ipadic-neologd > /etc/mecabrc
 
-ARG USERNAME=user
-ARG GROUPNAME=user
-ARG UID=1000
-ARG GID=1000
-RUN groupadd -g $GID $GROUPNAME && \
-    useradd -m -s /bin/bash -u $UID -g $GID $USERNAME
-USER $USERNAME
-WORKDIR /home/$USERNAME/
+RUN mkdir /docs
+WORKDIR /docs
