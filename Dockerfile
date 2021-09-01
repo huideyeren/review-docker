@@ -28,6 +28,7 @@ RUN echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen && \
 ENV LANG en_US.UTF-8
 
 RUN apt-get install -y --no-install-recommends \
+    texlive-plain-generic \
     texlive-lang-japanese \
     texlive-fonts-recommended \
     texlive-latex-extra \
