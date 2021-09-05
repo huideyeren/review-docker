@@ -31,6 +31,7 @@ RUN apt-get install -y --no-install-recommends \
     texlive-plain-generic \
     texlive-lang-japanese \
     texlive-fonts-recommended \
+    texlive-fonts-extra \
     texlive-latex-extra \
     lmodern \
     fonts-lmodern \
