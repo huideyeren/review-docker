@@ -89,7 +89,8 @@ RUN pip3 install sphinx \
                 pillow \
                 blockdiag \
                 blockdiag[pdf] \
-                reportlab
+                reportlab \
+                cairosvg
 
 RUN mkdir /java && \
     curl -sL https://sourceforge.net/projects/plantuml/files/plantuml.jar \
