@@ -91,7 +91,9 @@ RUN pip3 install sphinx \
                 blockdiag[pdf] \
                 reportlab \
                 svglib \
-                svgutils
+                svgutils \
+                cairosvg \
+                PyPDF2
 
 RUN mkdir /java && \
     curl -sL https://sourceforge.net/projects/plantuml/files/plantuml.jar \
