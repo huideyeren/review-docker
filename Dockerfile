@@ -70,6 +70,8 @@ RUN mkdir -p /usr/share/man/man1 && \
     libreadline-dev \
     sudo \
     cron \
+    cairo \
+    libffi-dev \
     zlib1g-dev && \
     apt-get clean
 
