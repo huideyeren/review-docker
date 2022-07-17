@@ -89,6 +89,7 @@ RUN pip3 install sphinx \
                 sphinxcontrib-nwdiag \
                 sphinxcontrib-plantuml \
                 pillow \
+                anshitsu \
                 blockdiag \
                 blockdiag[pdf] \
                 reportlab \
