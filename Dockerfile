@@ -1,4 +1,4 @@
-FROM debian:11.4-slim
+FROM debian:bullseye-20220912-slim
 
 RUN apt-get update && \
     apt-get install -y autoconf \ 
