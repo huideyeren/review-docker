@@ -43,6 +43,7 @@ RUN apt-get install -y --no-install-recommends \
     fonts-noto-cjk \
     fonts-noto-cjk-extra \
     fonts-ipafont && \
+    pandoc && \
     apt-get clean
 
 RUN mkdir -p /usr/share/man/man1 && \
@@ -80,7 +81,7 @@ RUN git clone https://github.com/rbenv/ruby-build.git && \
     ruby-build 3.1.2 /usr/local
 
 RUN echo 'gem: --no-rdoc --no-ri' >> /.gemrc && \
-    gem update
+    gem update && gem install pandoc2review
 
 RUN pip3 install sphinx \
                 sphinxcontrib-blockdiag \
