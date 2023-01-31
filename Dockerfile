@@ -42,7 +42,7 @@ RUN apt-get install -y --no-install-recommends \
     texlive-xetex \
     fonts-noto-cjk \
     fonts-noto-cjk-extra \
-    fonts-ipafont && \
+    fonts-ipafont \ 
     pandoc && \
     apt-get clean
 
