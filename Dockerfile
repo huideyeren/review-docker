@@ -84,6 +84,8 @@ RUN echo 'gem: --no-rdoc --no-ri' >> /.gemrc && \
     gem update && \
     gem install pandoc2review
 
+RUN which pandoc2review
+
 RUN pip3 install sphinx \
                 sphinxcontrib-blockdiag \
                 sphinxcontrib-seqdiag \
