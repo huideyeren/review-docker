@@ -30,6 +30,8 @@ ENV LANG en_US.UTF-8
 RUN apt-get install -y --no-install-recommends \
     texlive-plain-generic \
     texlive-lang-japanese \
+    texlive-lang-cyrillic \
+    texlive-lang-greek \
     texlive-fonts-recommended \
     texlive-fonts-extra \
     texlive-latex-extra \
