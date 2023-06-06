@@ -20,8 +20,10 @@ RUN apt-get update && \
                        apt-utils \
                        bash \
                        curl \
-                       sudo && \
-                       apt-get clean
+                       sudo \
+                       libatk-bridge2.0-0 libgtk-3-0 libasound2 && \
+                       apt-get clean && \
+                       rm -rf /var/lib/apt/lists/*
 
 RUN echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen && \
     locale-gen en_US.UTF-8 && update-locale en_US.UTF-8
@@ -46,7 +48,8 @@ RUN apt-get install -y --no-install-recommends \
     fonts-noto-cjk-extra \
     fonts-ipafont \ 
     pandoc && \
-    apt-get clean
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
 
 RUN mkdir -p /usr/share/man/man1 && \
     texhash && mktexlsr && luaotfload-tool --update && \
@@ -76,7 +79,8 @@ RUN mkdir -p /usr/share/man/man1 && \
     libcairo2-dev \
     libffi-dev \
     zlib1g-dev && \
-    apt-get clean
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
 
 RUN git clone https://github.com/rbenv/ruby-build.git && \
     PREFIX=/usr/local ./ruby-build/install.sh && \
@@ -111,7 +115,11 @@ RUN mkdir /java && \
 RUN apt-get install -y gnupg && apt-get clean && \
     curl -sL https://deb.nodesource.com/setup_lts.x | bash - && \
     apt-get install -y nodejs && apt-get clean && \
-    npm install -g yarn textlint-plugin-review textlint-rule-preset-japanese
+    rm -rf /var/lib/apt/lists/* && \
+    npm install -g yarn textlint-plugin-review \
+                        textlint-rule-preset-japanese \
+                        textlint-rule-general-novel-style-ja \
+                        @vivliostyle/cli
 
 RUN git clone https://github.com/neologd/mecab-ipadic-neologd.git && \
     cd mecab-ipadic-neologd && \
