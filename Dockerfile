@@ -22,8 +22,7 @@ RUN apt-get update && \
                        curl \
                        sudo \
                        libatk-bridge2.0-0 libgtk-3-0 libasound2 && \
-                       apt-get clean && \
-                       rm -rf /var/lib/apt/lists/*
+                       apt-get clean
 
 RUN echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen && \
     locale-gen en_US.UTF-8 && update-locale en_US.UTF-8
@@ -47,8 +46,7 @@ RUN apt-get install -y --no-install-recommends \
     fonts-noto-cjk-extra \
     fonts-ipafont \ 
     pandoc && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
+    apt-get clean 
 
 RUN mkdir -p /usr/share/man/man1 && \
     texhash && mktexlsr && luaotfload-tool --update && \
@@ -78,8 +76,7 @@ RUN mkdir -p /usr/share/man/man1 && \
     libcairo2-dev \
     libffi-dev \
     zlib1g-dev && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
+    apt-get clean 
 
 RUN git clone https://github.com/rbenv/ruby-build.git && \
     PREFIX=/usr/local ./ruby-build/install.sh && \
@@ -113,8 +110,7 @@ RUN mkdir /java && \
 
 RUN apt-get install -y gnupg && apt-get clean && \
     curl -sL https://deb.nodesource.com/setup_lts.x | bash - && \
-    apt-get install -y nodejs && apt-get clean && \
-    rm -rf /var/lib/apt/lists/* && \
+    apt-get install -y nodejs && apt-get clean
     npm install -g yarn textlint-plugin-review \
                         textlint-rule-preset-japanese \
                         textlint-rule-general-novel-style-ja \
