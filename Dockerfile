@@ -40,7 +40,6 @@ RUN apt-get install -y --no-install-recommends \
     lmodern \
     fonts-lmodern \
     tex-gyre \
-    fonts-texgyre \
     texlive-pictures \
     texlive-luatex \
     texlive-xetex \
