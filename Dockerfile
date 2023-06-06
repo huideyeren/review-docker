@@ -110,7 +110,7 @@ RUN mkdir /java && \
 
 RUN apt-get install -y gnupg && apt-get clean && \
     curl -sL https://deb.nodesource.com/setup_lts.x | bash - && \
-    apt-get install -y nodejs && apt-get clean
+    apt-get install -y nodejs npm && apt-get clean
     npm install -g yarn textlint-plugin-review \
                         textlint-rule-preset-japanese \
                         textlint-rule-general-novel-style-ja \
