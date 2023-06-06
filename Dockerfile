@@ -30,6 +30,8 @@ ENV LANG en_US.UTF-8
 RUN apt-get install -y --no-install-recommends \
     texlive-plain-generic \
     texlive-lang-japanese \
+    texlive-lang-cyrillic \
+    texlive-lang-greek \
     texlive-fonts-recommended \
     texlive-fonts-extra \
     texlive-latex-extra \
@@ -42,7 +44,8 @@ RUN apt-get install -y --no-install-recommends \
     texlive-xetex \
     fonts-noto-cjk \
     fonts-noto-cjk-extra \
-    fonts-ipafont && \
+    fonts-ipafont \ 
+    pandoc && \
     apt-get clean
 
 RUN mkdir -p /usr/share/man/man1 && \
@@ -80,7 +83,10 @@ RUN git clone https://github.com/rbenv/ruby-build.git && \
     ruby-build 3.1.2 /usr/local
 
 RUN echo 'gem: --no-rdoc --no-ri' >> /.gemrc && \
-    gem update
+    gem update && \
+    gem install pandoc2review
+
+RUN which pandoc2review
 
 RUN pip3 install sphinx \
                 sphinxcontrib-blockdiag \
