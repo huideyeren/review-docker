@@ -1,7 +1,7 @@
 FROM debian:11-slim
 
-RUN apt-get update && \
-    apt-get install -y autoconf \ 
+RUN apt update && \
+    apt install -y autoconf \ 
                        bison \
                        build-essential \
                        libssl-dev \
@@ -22,13 +22,13 @@ RUN apt-get update && \
                        curl \
                        sudo \
                        libatk-bridge2.0-0 libgtk-3-0 libasound2 && \
-                       apt-get clean
+                       apt clean
 
 RUN echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen && \
     locale-gen en_US.UTF-8 && update-locale en_US.UTF-8
 ENV LANG en_US.UTF-8
 
-RUN apt-get install -y --no-install-recommends \
+RUN apt install -y --no-install-recommends \
     texlive-plain-generic \
     texlive-lang-japanese \
     texlive-lang-cyrillic \
@@ -46,12 +46,12 @@ RUN apt-get install -y --no-install-recommends \
     fonts-noto-cjk-extra \
     fonts-ipafont \ 
     pandoc && \
-    apt-get clean 
+    apt clean 
 
 RUN mkdir -p /usr/share/man/man1 && \
     texhash && mktexlsr && luaotfload-tool --update && \
     kanji-config-updmap-sys --jis2004 noto && \
-    apt-get install -y --no-install-recommends \
+    apt install -y --no-install-recommends \
     ghostscript \
     gsfonts \
     zip \
@@ -76,7 +76,7 @@ RUN mkdir -p /usr/share/man/man1 && \
     libcairo2-dev \
     libffi-dev \
     zlib1g-dev && \
-    apt-get clean 
+    apt clean 
 
 RUN git clone https://github.com/rbenv/ruby-build.git && \
     PREFIX=/usr/local ./ruby-build/install.sh && \
@@ -108,9 +108,9 @@ RUN mkdir /java && \
     curl -sL https://sourceforge.net/projects/plantuml/files/plantuml.jar \
           > /java/plantuml.jar
 
-RUN apt-get install -y gnupg && apt-get clean && \
+RUN apt install -y gnupg && apt clean && \
     curl -sL https://deb.nodesource.com/setup_lts.x | bash - && \
-    apt-get install -y nodejs npm && apt-get clean
+    apt install -y nodejs && apt-get clean && \
     npm install -g yarn textlint-plugin-review \
                         textlint-rule-preset-japanese \
                         textlint-rule-general-novel-style-ja \
