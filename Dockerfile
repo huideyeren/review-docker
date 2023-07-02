@@ -50,7 +50,7 @@ RUN apt install -y --no-install-recommends \
 
 RUN mkdir -p /usr/share/man/man1 && \
     texhash && mktexlsr && luaotfload-tool --update && \
-    kanji-config-updmap-sys --jis2004 noto && \
+    kanji-config-updmap-sys --jis2004 noto-otc && \
     apt install -y --no-install-recommends \
     ghostscript \
     gsfonts \
