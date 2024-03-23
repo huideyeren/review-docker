@@ -114,7 +114,9 @@ RUN apt install -y gnupg && apt clean && \
     npm install -g yarn textlint-plugin-review \
                         textlint-rule-preset-japanese \
                         textlint-rule-general-novel-style-ja \
-                        @vivliostyle/cli
+                        @vivliostyle/cli \
+                        poppler-utils && \
+                        apt clean
 
 RUN git clone https://github.com/neologd/mecab-ipadic-neologd.git && \
     cd mecab-ipadic-neologd && \
