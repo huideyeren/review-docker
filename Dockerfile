@@ -80,11 +80,10 @@ RUN mkdir -p /usr/share/man/man1 && \
 
 RUN git clone https://github.com/rbenv/ruby-build.git && \
     PREFIX=/usr/local ./ruby-build/install.sh && \
-    ruby-build 3.1.2 /usr/local
+    ruby-build 3.2.3 /usr/local
 
 RUN echo 'gem: --no-rdoc --no-ri' >> /.gemrc && \
-    gem update && \
-    gem install pandoc2review
+    gem update
 
 RUN which pandoc2review
 
@@ -110,7 +109,7 @@ RUN mkdir /java && \
 
 RUN apt install -y gnupg && apt clean && \
     curl -sL https://deb.nodesource.com/setup_lts.x | bash - && \
-    apt install -y nodejs && apt-get clean && \
+    apt install -y nodejs poppler-utils libgbm-dev && apt-get clean && \
     npm install -g yarn textlint-plugin-review \
                         textlint-rule-preset-japanese \
                         textlint-rule-general-novel-style-ja \
