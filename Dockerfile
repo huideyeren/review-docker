@@ -88,7 +88,7 @@ RUN echo 'gem: --no-rdoc --no-ri' >> /.gemrc && \
 
 RUN which pandoc2review
 
-RUN pip3 install sphinx \
+RUN pip3 install --break-system-packages sphinx \
                 sphinxcontrib-blockdiag \
                 sphinxcontrib-seqdiag \
                 sphinxcontrib-actdiag \
