@@ -9,4 +9,4 @@
 - [横書き用](https://github.com/huidetang/yokogaki-template)
 - [縦書き用](https://github.com/huidetang/XiandaiFenshuTemplate)
 
-（これから追記します）
+(今後編集)
